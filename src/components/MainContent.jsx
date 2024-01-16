@@ -1,9 +1,40 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Sidebar from "./Sidebar";
 import NewProjectForm from "./NewProjectForm";
 
+const projects = [];
+
 export default function MainContent() {
   const [isAddBtnClicked, setIsAddBtnClicked] = useState(false);
+
+  const projectDetails = useRef();
+
+  function handleClickSubmit() {
+    if (
+      !projectDetails.current.getTitle() ||
+      !projectDetails.current.getDescription() ||
+      !projectDetails.current.getDueDate()
+    ) {
+      console.log("All fields are required");
+    } else {
+      const project = {
+        title: projectDetails.current.getTitle(),
+        description: projectDetails.current.getDescription(),
+        dueDate: projectDetails.current.getDueDate(),
+      };
+      //Empty all fields
+      // projectTitle.current.value = "";
+      // projectDescription.current.value = "";
+      // projectDueDate.current.value = "";
+
+      //Push project into projects array
+      projects.push(project);
+      console.log(projects);
+
+      //set addBtnClicked to false
+      handleClick(false);
+    }
+  }
 
   function handleClick(val) {
     val ? setIsAddBtnClicked(true) : setIsAddBtnClicked(false);
@@ -34,7 +65,7 @@ export default function MainContent() {
           </button>
         </div>
       ) : (
-        <NewProjectForm onClick={handleClick} />
+        <NewProjectForm ref={projectDetails} onClick={handleClickSubmit} />
       )}
     </main>
   );

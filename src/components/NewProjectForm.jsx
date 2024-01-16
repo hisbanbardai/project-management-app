@@ -1,37 +1,23 @@
-import { useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
-const projects = [];
-
-export default function NewProjectForm({ onClick }) {
+const NewProjectForm = forwardRef(function ({ onClick }, ref) {
   const projectTitle = useRef();
   const projectDescription = useRef();
   const projectDueDate = useRef();
 
-  function handleClickSubmit() {
-    if (
-      !projectTitle.current.value ||
-      !projectDescription.current.value ||
-      !projectDueDate.current.value
-    ) {
-      console.log("All fields are required");
-    } else {
-      const project = {
-        title: projectTitle.current.value,
-        description: projectDescription.current.value,
-        dueDate: projectDueDate.current.value,
-      };
-      //Empty all fields
-      projectTitle.current.value = "";
-      projectDescription.current.value = "";
-      projectDueDate.current.value = "";
-
-      //Push project into projects array
-      projects.push(project);
-      console.log(projects);
-
-      onClick(false);
-    }
-  }
+  useImperativeHandle(ref, () => {
+    return {
+      getTitle() {
+        return projectTitle.current.value;
+      },
+      getDescription() {
+        return projectDescription.current.value;
+      },
+      getDueDate() {
+        return projectDueDate.current.value;
+      },
+    };
+  });
 
   return (
     <>
@@ -39,7 +25,7 @@ export default function NewProjectForm({ onClick }) {
         <button className="text-stone-800 hover:text-stone-950">Cancel</button>
         <button
           className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
-          onClick={handleClickSubmit}
+          onClick={onClick}
         >
           Save
         </button>
@@ -70,4 +56,6 @@ export default function NewProjectForm({ onClick }) {
       </label>
     </>
   );
-}
+});
+
+export default NewProjectForm;
