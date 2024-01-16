@@ -7,11 +7,35 @@ export default function NewProjectForm() {
   const projectDescription = useRef();
   const projectDueDate = useRef();
 
+  function handleClickSubmit() {
+    if (
+      !projectTitle.current.value ||
+      !projectDescription.current.value ||
+      !projectDueDate.current.value
+    ) {
+      console.log("All fields are required");
+    } else {
+      const project = {
+        title: projectTitle.current.value,
+        description: projectDescription.current.value,
+        dueDate: projectDueDate.current.value,
+      };
+      projectTitle.current.value = "";
+      projectDescription.current.value = "";
+      projectDueDate.current.value = "";
+      projects.push(project);
+      console.log(projects);
+    }
+  }
+
   return (
-    <form className="mt-4 text-right" action="">
+    <>
       <div>
         <button className="text-stone-800 hover:text-stone-950">Cancel</button>
-        <button className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">
+        <button
+          className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
+          onClick={handleClickSubmit}
+        >
           Save
         </button>
       </div>
@@ -39,6 +63,6 @@ export default function NewProjectForm() {
           ref={projectDueDate}
         />
       </label>
-    </form>
+    </>
   );
 }
