@@ -42,7 +42,7 @@ export default function MainContent() {
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Sidebar addBtnClick={handleClick} />
+      <Sidebar addBtnClick={handleClick} projectsList={projects} />
       {!isAddBtnClicked ? (
         <div className="w-[35rem] mt-16">
           <img
