@@ -26,7 +26,10 @@ export default function MainContent() {
             Select a project or get started with a new one
           </p>
 
-          <button className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">
+          <button
+            className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
+            onClick={handleClick}
+          >
             Create new project
           </button>
         </div>
