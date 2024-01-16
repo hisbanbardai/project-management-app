@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 const projects = [];
 
-export default function NewProjectForm() {
+export default function NewProjectForm({ onClick }) {
   const projectTitle = useRef();
   const projectDescription = useRef();
   const projectDueDate = useRef();
@@ -20,11 +20,16 @@ export default function NewProjectForm() {
         description: projectDescription.current.value,
         dueDate: projectDueDate.current.value,
       };
+      //Empty all fields
       projectTitle.current.value = "";
       projectDescription.current.value = "";
       projectDueDate.current.value = "";
+
+      //Push project into projects array
       projects.push(project);
       console.log(projects);
+
+      onClick(false);
     }
   }
 

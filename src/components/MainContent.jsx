@@ -5,8 +5,8 @@ import NewProjectForm from "./NewProjectForm";
 export default function MainContent() {
   const [isAddBtnClicked, setIsAddBtnClicked] = useState(false);
 
-  function handleClick() {
-    setIsAddBtnClicked(true);
+  function handleClick(val) {
+    val ? setIsAddBtnClicked(true) : setIsAddBtnClicked(false);
   }
 
   return (
@@ -34,7 +34,7 @@ export default function MainContent() {
           </button>
         </div>
       ) : (
-        <NewProjectForm />
+        <NewProjectForm onClick={handleClick} />
       )}
     </main>
   );
