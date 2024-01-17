@@ -1,10 +1,10 @@
-export default function ProjectDetail() {
+export default function ProjectDetail({ data }) {
   return (
     <>
-      <h1>Project Title</h1>
+      <h1>{data.title}</h1>
       <button>Delete</button>
-      <p>Due Date</p>
-      <p>Project Description</p>
+      <p>{data.dueDate}</p>
+      <p>{data.description}</p>
     </>
   );
 }
