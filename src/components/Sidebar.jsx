@@ -20,7 +20,7 @@ export default function Sidebar({
       <ul>
         {projectsList.length > 0 &&
           projectsList.map((project) => (
-            <li key={project.title} onClick={projectTitleClick}>
+            <li key={project.title} onClick={() => projectTitleClick(project)}>
               {project.title}{" "}
             </li>
           ))}
