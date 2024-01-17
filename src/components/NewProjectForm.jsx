@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 
-const NewProjectForm = forwardRef(function ({ onClick }, ref) {
+const NewProjectForm = forwardRef(function ({ onClick, addBtnClick }, ref) {
   const projectTitle = useRef();
   const projectDescription = useRef();
   const projectDueDate = useRef();
@@ -22,7 +22,12 @@ const NewProjectForm = forwardRef(function ({ onClick }, ref) {
   return (
     <>
       <div>
-        <button className="text-stone-800 hover:text-stone-950">Cancel</button>
+        <button
+          className="text-stone-800 hover:text-stone-950"
+          onClick={() => addBtnClick(false)}
+        >
+          Cancel
+        </button>
         <button
           className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
           onClick={onClick}
