@@ -4,11 +4,11 @@ import NewProjectForm from "./NewProjectForm";
 import ProjectDetail from "./ProjectDetail";
 
 const projects = [];
-let projectData;
 
 export default function MainContent() {
   const [isAddBtnClicked, setIsAddBtnClicked] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
+  const [projectData, setProjectData] = useState(null);
 
   const projectDetails = useRef();
 
@@ -43,12 +43,27 @@ export default function MainContent() {
       setIsProjectClicked(false);
       setIsAddBtnClicked(true);
     } else setIsAddBtnClicked(false);
+
+    setProjectData(null);
   }
 
   function handleProjectTitleClick(data) {
-    projectData = data;
+    setProjectData(data);
     setIsAddBtnClicked(false);
     setIsProjectClicked(true);
+  }
+
+  function handleDeleteProject(data) {
+    setIsProjectClicked(false);
+    const indexToDelete = projects.findIndex(
+      (project) => project.title === data.title
+    );
+
+    if (indexToDelete !== -1) {
+      projects.splice(indexToDelete, 1);
+    }
+
+    setProjectData(null);
   }
 
   return (
@@ -90,7 +105,9 @@ export default function MainContent() {
         />
       )}
 
-      {isProjectClicked && <ProjectDetail data={projectData} />}
+      {isProjectClicked && (
+        <ProjectDetail data={projectData} deleteProject={handleDeleteProject} />
+      )}
     </main>
   );
 }
