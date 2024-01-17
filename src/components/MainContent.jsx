@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import Sidebar from "./Sidebar";
 import NewProjectForm from "./NewProjectForm";
+import ProjectDetail from "./ProjectDetail";
 
 const projects = [];
 
 export default function MainContent() {
   const [isAddBtnClicked, setIsAddBtnClicked] = useState(false);
+  const [isProjectClicked, setIsProjectClicked] = useState(false);
 
   const projectDetails = useRef();
 
@@ -32,17 +34,22 @@ export default function MainContent() {
       console.log(projects);
 
       //set addBtnClicked to false
-      handleClick(false);
+      handleAddBtnClick(false);
     }
   }
 
-  function handleClick(val) {
+  function handleAddBtnClick(val) {
     val ? setIsAddBtnClicked(true) : setIsAddBtnClicked(false);
+  }
+
+  function handleProjectTitleClick() {
+    setIsAddBtnClicked(false);
+    setIsProjectClicked(true);
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Sidebar addBtnClick={handleClick} projectsList={projects} />
+      <Sidebar addBtnClick={handleAddBtnClick} projectsList={projects} />
       {!isAddBtnClicked ? (
         <div className="w-[35rem] mt-16">
           <img
@@ -59,7 +66,7 @@ export default function MainContent() {
 
           <button
             className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
-            onClick={() => handleClick(true)}
+            onClick={() => handleAddBtnClick(true)}
           >
             Create new project
           </button>
@@ -68,9 +75,11 @@ export default function MainContent() {
         <NewProjectForm
           ref={projectDetails}
           onClick={handleClickSubmit}
-          addBtnClick={handleClick}
+          addBtnClick={handleAddBtnClick}
         />
       )}
+
+      {isProjectClicked && <ProjectDetail />}
     </main>
   );
 }
