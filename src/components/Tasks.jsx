@@ -1,25 +1,26 @@
 import { useRef, useState } from "react";
 import Task from "./Task";
 
-export default function Tasks() {
-  const [tasks, setTasks] = useState([]);
-  const [taskExist, setTaskExist] = useState(false);
+export default function Tasks({ tasksList, addTaskBtn }) {
   const taskName = useRef();
-
-  function handleAddTaskBtnClick() {
-    setTaskExist(true);
-    const task = taskName.current.value;
-    setTasks((prevTasks) => [...prevTasks, task]);
-    taskName.current.value = "";
-  }
-
   return (
     <>
       <h2>Tasks</h2>
-      <input ref={taskName} type="text" />
-      <button onClick={handleAddTaskBtnClick}>Add Task</button>
-      {!taskExist && <p>This project does not have any tasks yet</p>}
-      {taskExist && <Task tasksList={tasks} />}
+      <div>
+        <input ref={taskName} type="text" />
+        <button
+          onClick={() => {
+            addTaskBtn(taskName.current.value);
+            taskName.current.value = "";
+          }}
+        >
+          Add Task
+        </button>
+      </div>
+      <div>
+        {!tasksList.length && <p>This project does not have any tasks yet</p>}
+        {tasksList.length > 0 && <Task tasksList={tasksList} />}
+      </div>
     </>
   );
 }

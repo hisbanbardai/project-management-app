@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Sidebar from "./Sidebar";
 import NewProjectForm from "./NewProjectForm";
 import ProjectDetail from "./ProjectDetail";
+import Tasks from "./Tasks";
 
 const projects = [];
 
@@ -9,8 +10,21 @@ export default function MainContent() {
   const [isAddBtnClicked, setIsAddBtnClicked] = useState(false);
   const [isProjectClicked, setIsProjectClicked] = useState(false);
   const [projectData, setProjectData] = useState(null);
-
   const projectDetails = useRef();
+  const [tasks, setTasks] = useState({});
+
+  function handleAddTaskBtnClick(taskName) {
+    // const task = taskName;
+    setTasks((prevTasks) => {
+      const projectTasks = prevTasks[projectData.title] || [];
+      return {
+        ...prevTasks,
+        [projectData.title]: [...projectTasks, taskName],
+      };
+    });
+    // setTasks((prevTasks) => [...prevTasks, task]);
+    // taskName.current.value = "";
+  }
 
   function handleClickSubmit() {
     if (
@@ -106,7 +120,16 @@ export default function MainContent() {
       )}
 
       {isProjectClicked && (
-        <ProjectDetail data={projectData} deleteProject={handleDeleteProject} />
+        <>
+          <ProjectDetail
+            data={projectData}
+            deleteProject={handleDeleteProject}
+          />
+          <Tasks
+            tasksList={tasks[projectData.title] || []}
+            addTaskBtn={handleAddTaskBtnClick}
+          />
+        </>
       )}
     </main>
   );
