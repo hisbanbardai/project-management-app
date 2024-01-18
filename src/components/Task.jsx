@@ -1,10 +1,14 @@
-export default function Task() {
+export default function Task({ tasksList }) {
   return (
     <ul>
-      <li>
-        <span>Task Name</span>
-        <button>Clear</button>
-      </li>
+      {tasksList.map((task) => {
+        return (
+          <li key={task}>
+            <span>{task}</span>
+            <button>Clear</button>
+          </li>
+        );
+      })}
     </ul>
   );
 }
