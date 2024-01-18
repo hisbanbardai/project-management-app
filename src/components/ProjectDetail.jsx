@@ -1,3 +1,5 @@
+import Tasks from "./Tasks";
+
 export default function ProjectDetail({ data, deleteProject }) {
   return (
     <>
@@ -5,6 +7,9 @@ export default function ProjectDetail({ data, deleteProject }) {
       <button onClick={() => deleteProject(data)}>Delete</button>
       <p>{data.dueDate}</p>
       <p>{data.description}</p>
+      <div>
+        <Tasks />
+      </div>
     </>
   );
 }
