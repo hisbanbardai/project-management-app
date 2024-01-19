@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Task from "./Task";
 
-export default function Tasks({ tasksList, addTaskBtn }) {
+export default function Tasks({ tasksList, addTaskBtn, deleteTaskBtn }) {
   const taskName = useRef();
   return (
     <>
@@ -19,7 +19,9 @@ export default function Tasks({ tasksList, addTaskBtn }) {
       </div>
       <div>
         {!tasksList.length && <p>This project does not have any tasks yet</p>}
-        {tasksList.length > 0 && <Task tasksList={tasksList} />}
+        {tasksList.length > 0 && (
+          <Task tasksList={tasksList} deleteTask={deleteTaskBtn} />
+        )}
       </div>
     </>
   );

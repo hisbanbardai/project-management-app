@@ -1,15 +1,11 @@
-export default function Task({ tasksList }) {
-  function handleDeleteTask(task) {
-    const indexToDelete = tasksList.indexOf(task);
-  }
-
+export default function Task({ tasksList, deleteTask }) {
   return (
     <ul>
       {tasksList.map((task) => {
         return (
           <li key={task}>
             <span>{task}</span>
-            <button>Clear</button>
+            <button onClick={() => deleteTask(task)}>Clear</button>
           </li>
         );
       })}

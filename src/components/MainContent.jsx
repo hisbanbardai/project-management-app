@@ -13,6 +13,18 @@ export default function MainContent() {
   const projectDetails = useRef();
   const [tasks, setTasks] = useState({});
 
+  function handleDeleteTaskBtnClick(taskName) {
+    const indexToDelete = tasks[projectData.title].indexOf(taskName);
+    setTasks((prevTasks) => {
+      const projectTasks = prevTasks[projectData.title];
+      const updatedTasks = projectTasks.filter((task) => task !== taskName);
+      return {
+        ...prevTasks,
+        [projectData.title]: updatedTasks,
+      };
+    });
+  }
+
   function handleAddTaskBtnClick(taskName) {
     // const task = taskName;
     setTasks((prevTasks) => {
@@ -128,6 +140,7 @@ export default function MainContent() {
           <Tasks
             tasksList={tasks[projectData.title] || []}
             addTaskBtn={handleAddTaskBtnClick}
+            deleteTaskBtn={handleDeleteTaskBtnClick}
           />
         </>
       )}
