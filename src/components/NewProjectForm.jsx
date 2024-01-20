@@ -20,8 +20,8 @@ const NewProjectForm = forwardRef(function ({ onClick, addBtnClick }, ref) {
   });
 
   return (
-    <div>
-      <menu>
+    <div className="w-[35rem] mt-16">
+      <menu className="flex items-center justify-end gap-4 my-4">
         <li>
           <button
             className="text-stone-800 hover:text-stone-950"
@@ -40,7 +40,7 @@ const NewProjectForm = forwardRef(function ({ onClick, addBtnClick }, ref) {
         </li>
       </menu>
       <div>
-        <p>
+        <p className="flex flex-col gap-1 my-4">
           <label className="text-sm font-bold uppercase text-stone-500">
             TITLE
           </label>
@@ -50,7 +50,7 @@ const NewProjectForm = forwardRef(function ({ onClick, addBtnClick }, ref) {
             ref={projectTitle}
           />
         </p>
-        <p>
+        <p className="flex flex-col gap-1 my-4">
           <label className="text-sm font-bold uppercase text-stone-500">
             DESCRIPTION
           </label>
@@ -60,7 +60,7 @@ const NewProjectForm = forwardRef(function ({ onClick, addBtnClick }, ref) {
             ref={projectDescription}
           />
         </p>
-        <p>
+        <p className="flex flex-col gap-1 my-4">
           <label className="text-sm font-bold uppercase text-stone-500">
             DUE DATE
           </label>
