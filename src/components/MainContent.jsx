@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import NewProjectForm from "./NewProjectForm";
 import ProjectDetail from "./ProjectDetail";
 import Tasks from "./Tasks";
+import noProjectImage from "../assets/no-projects.png";
 
 const projects = [];
 
@@ -101,10 +102,10 @@ export default function MainContent() {
       />
 
       {!isAddBtnClicked && !isProjectClicked && (
-        <div className="w-[35rem] mt-16">
+        <div className="mt-24 text-center w-2/3">
           <img
             className="w-16 h-16 object-contain mx-auto"
-            src="logo.png"
+            src={noProjectImage}
             alt="An image of pad and pen"
           />
           <h2 className="text-xl font-bold text-stone-700 my-4">
@@ -113,13 +114,14 @@ export default function MainContent() {
           <p className="text-stone-600 mb-4">
             Select a project or get started with a new one
           </p>
-
-          <button
-            className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
-            onClick={() => handleAddBtnClick(true)}
-          >
-            Create new project
-          </button>
+          <p>
+            <button
+              className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
+              onClick={() => handleAddBtnClick(true)}
+            >
+              Create new project
+            </button>
+          </p>
         </div>
       )}
 
