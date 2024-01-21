@@ -1,20 +1,21 @@
-import Tasks from "./Tasks";
-
-export default function ProjectDetail({
-  data,
-  deleteProject,
-  tasksList,
-  addTaskBtn,
-}) {
+export default function ProjectDetail({ data, deleteProject }) {
   return (
-    <>
-      <h1>{data.title}</h1>
-      <button onClick={() => deleteProject(data)}>Delete</button>
-      <p>{data.dueDate}</p>
-      <p>{data.description}</p>
-      {/* <div>
-        <Tasks tasksList={tasksList} addTaskBtn={addTaskBtn} />
-      </div> */}
-    </>
+    <div className="w-[35rem] mt-16">
+      <header className="pb-4 mb-4 border-b-2 border-stone-300">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-stone-600 mb-2">
+            {data.title}
+          </h1>
+          <button
+            className="text-stone-600 hover:text-stone-950"
+            onClick={() => deleteProject(data)}
+          >
+            Delete
+          </button>
+        </div>
+        <p className="mb-4 text-stone-400">{data.dueDate}</p>
+        <p className="text-stone-600 whitespace-pre-wrap">{data.description}</p>
+      </header>
+    </div>
   );
 }
