@@ -41,9 +41,9 @@ export default function MainContent() {
 
   function handleClickSubmit() {
     if (
-      !projectDetails.current.getTitle() ||
-      !projectDetails.current.getDescription() ||
-      !projectDetails.current.getDueDate()
+      !projectDetails.current.getTitle().trim() ||
+      !projectDetails.current.getDescription().trim() ||
+      !projectDetails.current.getDueDate().trim()
     ) {
       console.log("All fields are required");
     } else {
