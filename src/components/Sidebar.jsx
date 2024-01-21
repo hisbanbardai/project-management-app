@@ -17,11 +17,13 @@ export default function Sidebar({
       >
         + Add Project
       </button>
-      <ul>
+      <ul className="mt-8">
         {projectsList.length > 0 &&
           projectsList.map((project) => (
             <li key={project.title} onClick={() => projectTitleClick(project)}>
-              {project.title}{" "}
+              <button className="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800">
+                {project.title}
+              </button>
             </li>
           ))}
       </ul>
