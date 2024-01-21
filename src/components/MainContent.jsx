@@ -111,12 +111,12 @@ export default function MainContent() {
           <h2 className="text-xl font-bold text-stone-700 my-4">
             No project Selected
           </h2>
-          <p className="text-stone-600 mb-4">
+          <p className="text-stone-400 mb-4">
             Select a project or get started with a new one
           </p>
-          <p>
+          <p className="mt-8">
             <button
-              className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
+              className="px-4 py-2 text-xs md:text-base rounded-md bg-stone-700 text-stone-400 hover:bg-stone-600 hover:text-stone-100"
               onClick={() => handleAddBtnClick(true)}
             >
               Create new project
