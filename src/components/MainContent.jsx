@@ -27,7 +27,9 @@ export default function MainContent() {
   }
 
   function handleAddTaskBtnClick(taskName) {
-    // const task = taskName;
+    if (taskName.trim() === "") {
+      return;
+    }
     setTasks((prevTasks) => {
       const projectTasks = prevTasks[projectData.title] || [];
       return {
